@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html ng-app="App">
+<head>
+    <title>Task1 AngularJS Part1</title>
+</head>
+<body>
+    <div class="left-column" ng-controller="repositoryController">
+        <div class="bordered-block">
+            <h4>Local Repositories Search</h4>
+            <select ng-model='filter' ng-options='filter.lookupCode as filter.description for filter in filterNames'></select>
+            <select ng-model='reverse' ng-options="reverse.lookupCode as reverse.description for reverse in reverseNames"></select>
+            <input ng-model="limit" ng-change="onLimitChange()" value="{{limit}}"/>
+        </div>
+
+        <div class="bordered-block">
+            <ul class="no-bullets">
+                <li ng-repeat="repo in repositories |  orderBy:filter:reverse=='false' | limitTo:limit">
+                    <table>
+                        <tr>
+                            <td><img class="avatar" ng-src="{{repo.owner.avatar_url}}" /></td>
+                            <td>
+                                <table>
+                                    <tr><td>Repo Name: {{repo.full_name}}</td></tr>
+                                    <tr><td>Description: {{repo.description}}</td></tr>
+                                    <tr><td>Owner ID: {{repo.owner.id}}</td></tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="right-column" ng-controller="gitController">
+        <div class="bordered-block">
+            <h4>GitHub API Search</h4>
+            <p class="text-inline">Search by</p>
+            <select ng-model="searchBy" ng-options='searchBy as searchBy for searchBy in searchByValues' ng-change="onSearchTypeChanged()"></select>
+            <input ng-model="searchValue" value="{{searchValue}}"/>
+            <input type="button" ng-click="onSearchButtonClickHandler()" value="Search"/>
+        </div>
+
+        <div class="bordered-block">
+            <ul class="no-bullets">
+                <li ng-repeat="repo in repositories">
+                    <table>
+                        <tr>
+                            <td><img class="avatar" ng-src="{{repo.owner.avatar_url}}"/></td>
+                            <td>
+                                <table>
+                                    <tr><td>Repo Name: {{repo.full_name}}</td></tr>
+                                    <tr><td>Description: {{repo.description | cut:90}}</td></tr>
+                                    <tr><td>Owner ID: {{repo.owner.id}}</td></tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer"></div>
+	<link rel="stylesheet" type="text/css" href="Content/Site.css">
+	<script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-resource.js"></script>
+    <script src="Scripts/RepositoriesController.js"></script>
+</body>
+</html>
