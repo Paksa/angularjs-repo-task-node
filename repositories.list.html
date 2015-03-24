@@ -1,0 +1,19 @@
+<ul class="no-bullets">
+    <p ng-show="!repositories">
+        Press Search Button to see the list of repositories (or redefine search parameters)
+    </p>
+    <li ng-repeat="repo in repositories" ui-sref="repositories.details({repo_owner: repo.owner.login, repo_name: repo.name, repo: repo})">
+        <table>
+            <tr>
+                <td><img class="avatar" ng-src="{{repo.owner.avatar_url}}"/></td>
+                <td>
+                    <table>
+                        <tr><td>Repo Name: {{repo.full_name}}</td></tr>
+                        <tr><td>Description: {{repo.description | cut:90}}</td></tr>
+                        <tr><td>Owner ID: {{repo.owner.id}}</td></tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </li>
+</ul>

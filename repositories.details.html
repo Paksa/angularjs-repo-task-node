@@ -1,0 +1,44 @@
+<div>
+    <input type="button" ui-sref="repositories.list" value="Back to Repositories List"/>
+    <table>
+        <tr>
+            <td><img class="avatar" ng-src="{{repo.owner.avatar_url}}"/></td>
+            <td>
+                <table>
+                    <tr><td><b>Repo Name: </b>{{repo.name || "unknown"}}</td></tr>
+                    <tr><td><b>Owner: </b>{{repo.owner.login || "unknown"}}</td></tr>
+                    <tr><td><b>Forks: </b>{{repo.forks_count || "unknown"}}</td></tr>
+                    <tr><td><b>Size: </b>{{repo.size || "unknown"}}</td></tr>
+                    <tr><td><b>Language: </b>{{repo.language || "unknown"}}</td></tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <table>
+                    <tr><td><b>Description: </b>{{repo.description || 'There is no description'}}</td></tr>
+                </table>
+            </td>
+        </tr>
+        <tr><td></td>
+            <td>
+                <div><b>Contributors: </b>{{contributors.length}}</div>
+                <ul class="no-bullets">
+                    <li ng-repeat="contributor in contributors">
+                        <table>
+                            <tr>
+                                <td><img class="avatar" ng-src="{{contributor.avatar_url}}"/></td>
+                                <td>
+                                    <table><tr><td>{{contributor.login}}</td></tr></table>
+                                    <table><tr><td>Contributions: {{contributor.contributions}}</td></tr></table>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+</div>

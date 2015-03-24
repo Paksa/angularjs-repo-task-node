@@ -1,0 +1,8 @@
+<div class="bordered-block">
+    <h4>GitHub API Search</h4>
+    <p class="text-inline">Search by</p>
+    <select ng-model="searchBy" ng-options='searchBy as searchBy for searchBy in searchByValues' ng-change="onSearchTypeChanged()"></select>
+    <input ng-model="searchValue" value="{{searchValue}}"/>
+    <input type="button" ng-click="onSearchButtonClickHandler()" value="Search"/>
+</div>
+<div ui-view class="bordered-block"></div>
